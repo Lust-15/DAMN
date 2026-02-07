@@ -23,7 +23,6 @@ class KeywordFinder:
 
         for word in keywords:
             parsed = self.morph.parse(word)[0]
-            print(parsed)
             # Для существительных
             if 'NOUN' in parsed.tag:
                 forms = set()
@@ -37,7 +36,6 @@ class KeywordFinder:
                         except:
                             pass
                 keyword_forms[word] = forms
-                print(forms)
             # Для глаголов
             elif 'VERB' in parsed.tag or 'INFN' in parsed.tag:
                 forms = set()
@@ -96,7 +94,6 @@ class KeywordFinder:
         words = re.findall(r'\b\w+\b', text_clean)
 
         found_keywords = Counter()
-        print(words)
         # Поиск ключевых слов
         for word in words:
             # Приводим слово к нормальной форме
