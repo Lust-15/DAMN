@@ -11,15 +11,7 @@ def get_article_text_by_exact_class(url):
 
         # Парсим HTML
         soup = BeautifulSoup(response.text, 'html.parser')
-
-        # Ищем все div элементы с точным классом article__text
-        # Используем CSS-селектор для точного поиска
-        article_divs = soup.select('div.article__text')
-
-        # Если не нашли, попробуем альтернативный метод
-        if not article_divs:
-            # Ищем все div, у которых в атрибуте class содержится article__text
-            article_divs = soup.find_all('div', class_=lambda x: x and 'article__text' in x.split())
+        article_divs = soup.select('div.article__text,p.topic-body__content-text')
 
         # Собираем текст из найденных элементов
         all_text = []
